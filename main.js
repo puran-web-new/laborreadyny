@@ -1,4 +1,5 @@
 (function () {
+  // Navigation Toggle
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
   if (navToggle && mainNav) {
@@ -16,12 +17,14 @@
     });
   }
 
+  // Active Link Detection
   const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   document.querySelectorAll('nav a').forEach(function (link) {
     const href = (link.getAttribute('href') || '').toLowerCase();
     if (href === page || (page === '' && href === 'index.html')) link.classList.add('active');
   });
 
+  // Header Scroll Effect
   const header = document.querySelector('header');
   if (header) {
     window.addEventListener('scroll', function () {
@@ -29,6 +32,7 @@
     });
   }
 
+  // Back to Top Button
   const backToTop = document.getElementById('backToTop');
   if (backToTop) {
     window.addEventListener('scroll', function () {
@@ -39,6 +43,7 @@
     });
   }
 
+  // Reveal Animations
   const revealTargets = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   if ('IntersectionObserver' in window && revealTargets.length) {
     const observer = new IntersectionObserver(function (entries) {
@@ -54,6 +59,7 @@
     revealTargets.forEach(function (target) { target.classList.add('visible'); });
   }
 
+  // Counter Animation
   const counters = document.querySelectorAll('.counter');
   if (counters.length && 'IntersectionObserver' in window) {
     const counterObserver = new IntersectionObserver(function (entries) {
@@ -80,26 +86,39 @@
     counters.forEach(function (counter) { counterObserver.observe(counter); });
   }
 
+  // Floating Particles
   const particleField = document.querySelector('.particle-field');
   if (particleField) {
-    for (let i = 0; i < 28; i += 1) {
+    for (let i = 0; i < 35; i += 1) {
       const dot = document.createElement('div');
       dot.className = 'particle';
-      const size = Math.random() * 4 + 2;
-      const opacity = Math.random() * 0.32 + 0.14;
-      dot.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;background:' + (Math.random() > 0.5 ? 'rgba(225,83,31,' + opacity + ')' : 'rgba(255,255,255,' + (opacity * 0.6) + ')') + ';animation:float ' + (Math.random() * 8 + 6) + 's ' + (Math.random() * 6) + 's ease-in-out infinite';
+      const size = Math.random() * 5 + 2;
+      const opacity = Math.random() * 0.4 + 0.15;
+      const duration = Math.random() * 4 + 6;
+      dot.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;background:' + (Math.random() > 0.5 ? 'rgba(225,83,31,' + opacity + ')' : 'rgba(255,165,0,' + opacity + ')') + ';animation: float ' + duration + 's ease-in-out infinite;';
       particleField.appendChild(dot);
     }
   }
 
-  document.querySelectorAll('.faq-q').forEach(function (item) {
-    item.addEventListener('click', function () {
-      const answer = this.nextElementSibling;
-      const open = this.classList.toggle('open');
-      if (answer) answer.classList.toggle('open', open);
-    });
+  // Accordion Functionality
+  document.querySelectorAll('.accordion-item').forEach(function (item) {
+    const header = item.querySelector('.accordion-header');
+    if (header) {
+      header.addEventListener('click', function () {
+        const wasOpen = item.classList.contains('open');
+        // Close all accordion items
+        document.querySelectorAll('.accordion-item').forEach(function (i) {
+          i.classList.remove('open');
+        });
+        // Open clicked item if it wasn't already open
+        if (!wasOpen) {
+          item.classList.add('open');
+        }
+      });
+    }
   });
 
+  // Form Handling
   document.querySelectorAll('form[data-formspree]').forEach(function (form) {
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -134,6 +153,7 @@
     });
   });
 
+  // Timesheet Calculator
   function calcTimesheet() {
     let total = 0;
     document.querySelectorAll('.ts-hours').forEach(function (input) {
