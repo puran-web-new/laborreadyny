@@ -312,6 +312,19 @@ nav a:hover {
   text-shadow: 0 0 15px rgba(255, 165, 0, 0.8);
 }
 
+.hero-brand-inline {
+  width: min(430px, 84vw);
+  margin: 0 0 1rem;
+  opacity: 0.92;
+}
+
+.hero-brand-inline img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+}
+
 .hero h1 {
   font-family: Oswald, Arial, sans-serif;
   font-size: clamp(2.8rem, 5.5vw, 4rem);
