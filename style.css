@@ -668,6 +668,37 @@ nav a:hover {
   line-height: 1.8;
 }
 
+.service-module {
+  margin-bottom: 1.4rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px dashed rgba(255, 165, 0, 0.25);
+}
+
+.service-module:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.service-module h4 {
+  margin: 0 0 0.65rem;
+  color: #ffbd47;
+  font-family: Oswald, Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.service-module ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.service-module li {
+  margin-bottom: 0.55rem;
+  color: rgba(255, 255, 255, 0.93);
+}
+
 .who-section {
   background: linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 107, 53, 0.05) 100%);
   border-top: 2px solid rgba(255, 165, 0, 0.15);
