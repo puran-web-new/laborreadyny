@@ -597,6 +597,12 @@ nav a:hover {
   padding: 0.4rem;
 }
 
+.service-media-card img.about-brand-banner-img {
+  object-fit: contain;
+  background: radial-gradient(circle at 30% 20%, rgba(42, 78, 134, 0.34), rgba(7, 15, 33, 0.96));
+  padding: 0.4rem;
+}
+
 .service-media-card:hover {
   transform: translateY(-5px);
   border-color: rgba(255, 165, 0, 0.65);
