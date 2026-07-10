@@ -1,4 +1,80 @@
 (function () {
+  const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+  function injectSharedLayout() {
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+
+    if (header) {
+      header.innerHTML = ''
+        + '<div class="header-inner">'
+        + '  <a href="index.html" class="brand">'
+        + '    <img src="assets/logo.png" class="brand-logo" alt="Labor Ready NY Workforce Solutions logo" />'
+        + '    <div class="brand-text">'
+        + '      <div class="brand-name">Labor Ready <span>NY</span></div>'
+        + '      <div class="brand-sub">Workforce Solutions</div>'
+        + '    </div>'
+        + '  </a>'
+        + '  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">'
+        + '    <span></span><span></span><span></span>'
+        + '  </button>'
+        + '  <nav id="mainNav" aria-label="Main navigation">'
+        + '    <a href="index.html">Home</a>'
+        + '    <a href="services.html">Services</a>'
+        + '    <a href="about.html">About</a>'
+        + '    <a href="portal.html">Portal</a>'
+        + '    <a href="https://payroll.laborreadyny.xyz" target="_blank" rel="noopener noreferrer">Payroll</a>'
+        + '    <a href="contact.html">Contact</a>'
+        + '  </nav>'
+        + '  <a href="portal.html" class="btn-cta btn-sweep">Get Workers Now</a>'
+        + '</div>';
+    }
+
+    if (footer) {
+      footer.innerHTML = ''
+        + '<div class="footer-inner">'
+        + '  <div>'
+        + '    <img src="assets/logo.png" class="footer-logo" alt="Labor Ready NY Workforce Solutions logo" />'
+        + '    <h3 class="footer-title">Labor Ready NY Inc</h3>'
+        + '    <p>Construction staffing, dispatch, payroll assistance, and workforce support for NYC contractors. Building New York, Ready for Every Job.</p>'
+        + '  </div>'
+        + '  <div>'
+        + '    <h4 class="footer-title">Quick Links</h4>'
+        + '    <ul class="footer-links">'
+        + '      <li><a href="index.html">Home</a></li>'
+        + '      <li><a href="services.html">Services</a></li>'
+        + '      <li><a href="about.html">About</a></li>'
+        + '      <li><a href="portal.html">Portal</a></li>'
+        + '      <li><a href="contact.html">Contact</a></li>'
+        + '    </ul>'
+        + '  </div>'
+        + '  <div>'
+        + '    <h4 class="footer-title">Services</h4>'
+        + '    <ul class="footer-links">'
+        + '      <li><a href="onboarding.html">Client Onboarding</a></li>'
+        + '      <li><a href="dispatch.html">Dispatch Request</a></li>'
+        + '      <li><a href="apply.html">Worker Application</a></li>'
+        + '      <li><a href="https://payroll.laborreadyny.xyz" target="_blank" rel="noopener noreferrer">Payroll Portal</a></li>'
+        + '    </ul>'
+        + '  </div>'
+        + '  <div>'
+        + '    <h4 class="footer-title">Contact Info</h4>'
+        + '    <ul class="footer-contact-list">'
+        + '      <li><strong>Phone:</strong> 718-262-9606</li>'
+        + '      <li><strong>Email:</strong> payroll@laborreadyny.xyz</li>'
+        + '      <li><strong>Address:</strong> South Ozone Park, NY 11420</li>'
+        + '      <li><strong>Service:</strong> 24/7 Dispatch</li>'
+        + '    </ul>'
+        + '  </div>'
+        + '</div>'
+        + '<div class="footer-bottom">'
+        + '  <div class="footer-bottom-inner">© 2026 Labor Ready NY Inc. All rights reserved. | Licensed & Insured in New York State | Built for Construction Excellence</div>'
+        + '</div>';
+    }
+  }
+
+  injectSharedLayout();
+
   // Navigation Toggle
   const navToggle = document.getElementById('navToggle');
   const mainNav = document.getElementById('mainNav');
@@ -18,10 +94,11 @@
   }
 
   // Active Link Detection
-  const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   document.querySelectorAll('nav a').forEach(function (link) {
     const href = (link.getAttribute('href') || '').toLowerCase();
-    if (href === page || (page === '' && href === 'index.html')) link.classList.add('active');
+    if (href === page || (page === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
   });
 
   // Header Scroll Effect
@@ -30,6 +107,25 @@
     window.addEventListener('scroll', function () {
       header.classList.toggle('scrolled', window.scrollY > 8);
     });
+  }
+
+  // Keep utility actions present on all pages
+  if (!document.querySelector('.float-call') && page !== 'payroll.html') {
+    const callBtn = document.createElement('a');
+    callBtn.href = 'tel:7182629606';
+    callBtn.className = 'float-call';
+    callBtn.setAttribute('aria-label', 'Call Labor Ready NY Inc');
+    callBtn.textContent = '📞';
+    document.body.appendChild(callBtn);
+  }
+  if (!document.getElementById('backToTop') && page !== 'payroll.html') {
+    const topBtn = document.createElement('button');
+    topBtn.type = 'button';
+    topBtn.id = 'backToTop';
+    topBtn.className = 'back-to-top';
+    topBtn.setAttribute('aria-label', 'Back to top');
+    topBtn.textContent = '↑';
+    document.body.appendChild(topBtn);
   }
 
   // Back to Top Button
@@ -84,6 +180,37 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(function (counter) { counterObserver.observe(counter); });
+  }
+
+  // Site-wide ambient construction animation
+  if (!document.querySelector('.ambient-construction') && page !== 'payroll.html') {
+    const ambient = document.createElement('div');
+    ambient.className = 'ambient-construction';
+    ambient.setAttribute('aria-hidden', 'true');
+    const icons = ['🏗️', '⚙️', '🔨', '⚒️', '🦺', '📐', '🚧', '🧱', '🔩', '🏢'];
+    for (let i = 0; i < 18; i += 1) {
+      const token = document.createElement('span');
+      token.className = 'ambient-icon';
+      token.textContent = icons[i % icons.length];
+      token.style.left = Math.random() * 100 + '%';
+      token.style.top = Math.random() * 100 + '%';
+      token.style.animationDelay = (Math.random() * 8).toFixed(2) + 's';
+      token.style.animationDuration = (10 + Math.random() * 10).toFixed(2) + 's';
+      token.style.fontSize = (18 + Math.random() * 16).toFixed(0) + 'px';
+      ambient.appendChild(token);
+    }
+    document.body.appendChild(ambient);
+  }
+
+  // Spread hero construction elements instead of stacking
+  const constructionElements = document.querySelector('.construction-elements');
+  if (constructionElements) {
+    constructionElements.querySelectorAll('.element').forEach(function (el) {
+      el.style.left = (5 + Math.random() * 90) + '%';
+      el.style.top = (8 + Math.random() * 74) + '%';
+      el.style.animationDelay = (Math.random() * 5).toFixed(2) + 's';
+      el.style.animationDuration = (7 + Math.random() * 6).toFixed(2) + 's';
+    });
   }
 
   // Floating Particles
