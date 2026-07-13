@@ -73,7 +73,7 @@
         + '      <li><a href="/about">About</a></li>'
         + '      <li><a href="/portal">Portal</a></li>'
         + '      <li><a href="/contact">Contact</a></li>'
-        + '      <li><a href="/admin/login">Admin</a></li>'
+        + '      <li><a href="/admin">Admin</a></li>'
         + '    </ul>'
         + '  </div>'
         + '  <div>'
@@ -336,6 +336,56 @@
     });
   });
 
+  function getIntakeConfig() {
+    const cfg = window.LRNY_INTAKE_CONFIG || null;
+    if (!cfg || !cfg.supabaseUrl || !cfg.supabaseAnonKey) {
+      return null;
+    }
+    return cfg;
+  }
+
+  function submitToSupabaseIntake(form) {
+    const cfg = getIntakeConfig();
+    if (!cfg) {
+      return Promise.reject(new Error('Supabase intake is not configured'));
+    }
+
+    const formData = new FormData(form);
+    const payload = {};
+    formData.forEach(function (value, key) {
+      if (typeof value === 'string') {
+        payload[key] = value.trim();
+      }
+    });
+
+    const submittedAt = payload.submitted_at || new Date().toISOString();
+    const requestBody = {
+      form_type: payload.form_type || 'general_request',
+      source_page: payload.source_page || window.location.href,
+      contact_email: payload.email || null,
+      contact_phone: payload.phone || payload.contact_phone || null,
+      payload: payload,
+      submitted_at: submittedAt,
+      status: 'new'
+    };
+
+    return fetch(cfg.supabaseUrl.replace(/\/+$/, '') + '/rest/v1/intake_requests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: cfg.supabaseAnonKey,
+        Authorization: 'Bearer ' + cfg.supabaseAnonKey,
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify(requestBody)
+    }).then(function (response) {
+      if (!response.ok) {
+        throw new Error('Supabase intake send failed');
+      }
+      return response;
+    });
+  }
+
   // Form Handling
   document.querySelectorAll('form[data-intake-form]').forEach(function (form) {
     const heading = document.querySelector('.page-hero h1');
@@ -375,21 +425,8 @@
       if (submittedAt) {
         submittedAt.value = new Date().toISOString();
       }
-      const primaryAction = form.getAttribute('action') || '';
-      function postTo(actionUrl) {
-        return fetch(actionUrl, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' }
-        });
-      }
-      postTo(primaryAction)
-        .then(function (response) {
-          if (!response.ok) {
-            throw new Error('Send failed');
-          }
-          return response;
-        })
+      submitToSupabaseIntake(form)
+      submitToSupabaseIntake(form)
         .then(function () {
           if (success) {
             success.style.display = 'block';

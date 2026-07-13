@@ -244,6 +244,20 @@ nav a:hover {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
 }
 
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .nav-toggle {
   display: none;
   background: none;
@@ -1286,6 +1300,16 @@ textarea {
   background: rgba(8, 25, 47, 0.42);
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
+}
+
+.admin-status-select {
+  width: 100%;
+  margin-top: 0.45rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(8, 25, 47, 0.65);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 0.55rem 0.7rem;
 }
 
 .ambient-construction {
