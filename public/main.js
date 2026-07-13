@@ -426,6 +426,7 @@
         submittedAt.value = new Date().toISOString();
       }
       submitToSupabaseIntake(form)
+      submitToSupabaseIntake(form)
         .then(function () {
           if (success) {
             success.style.display = 'block';
