@@ -1585,3 +1585,37 @@ textarea {
     bottom: 5rem;
   }
 }
+
+/* Next.js migration glass layer */
+:root {
+  --glass-bg: rgba(17, 38, 66, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.22);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 165, 0, 0.14), transparent 44%),
+    radial-gradient(circle at 82% 12%, rgba(95, 205, 255, 0.1), transparent 35%),
+    radial-gradient(circle at 55% 85%, rgba(255, 255, 255, 0.08), transparent 36%);
+}
+
+header,
+.service-card, .why-card, .testimonial-card, .portal-card, .info-card, .value-card, .process-step, .company-doc, .spec-panel, .form-card,
+.industry-card, .client-card, .borough-card, .directory-item, .contact-item, form {
+  background: linear-gradient(140deg, var(--glass-bg) 0%, rgba(10, 28, 50, 0.3) 100%);
+  border-color: var(--glass-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
