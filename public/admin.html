@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Intake Manager | Labor Ready NY Inc</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header></header>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="/">Home</a> / <span>Admin</span></div>
+      <h1>Admin Intake Manager</h1>
+      <p>Securely review and manage submissions from contact, dispatch, onboarding, and applications.</p>
+    </div>
+  </section>
+
+  <section class="section-inner section-alt">
+    <div class="form-wrapper">
+      <form id="adminLoginForm" novalidate>
+        <p class="required-note">Admin sign in</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="adminEmail">Email *</label>
+            <input id="adminEmail" name="email" type="email" required />
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password *</label>
+            <input id="adminPassword" name="password" type="password" required />
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">Sign In</button>
+        <div class="form-error-msg" id="adminLoginError">Login failed. Check email/password and Supabase config.</div>
+      </form>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+      <div class="section-heading">
+        <h2>Submission Queue</h2>
+        <button id="adminLogoutBtn" class="btn-secondary" type="button">Logout</button>
+      </div>
+      <p class="routing-note">All form requests are stored in Supabase and shown below.</p>
+      <div id="adminRequests" class="portal-grid reveal"></div>
+    </div>
+  </section>
+
+  <footer></footer>
+  <script src="/intake-config.js"></script>
+  <script src="/main.js"></script>
+  <script src="/admin.js"></script>
+</body>
+</html>
