@@ -437,6 +437,58 @@
     document.body.classList.add("admin-modal-open");
   }
 
+  function openRequestFullViewWindow(id) {
+    const row = getRowById(id);
+    if (!row) {
+      showError("Could not open request details.");
+      return;
+    }
+    const fields = getPayloadFields(row.payload || {});
+    const fileLinks = getPayloadFileLinks(row.payload || {});
+    const fieldsMarkup = fields.map(function (entry) {
+      return "<article class=\"field\"><strong>" + escapeHtml(toHumanLabel(entry.key)) + "</strong><span>" + escapeHtml(entry.value) + "</span></article>";
+    }).join("");
+    const fileMarkup = fileLinks.length
+      ? "<section><h2>Uploaded Files</h2><div class=\"field-grid\">"
+        + fileLinks.map(function (entry) {
+          const href = escapeHtml(entry.value);
+          return "<article class=\"field\"><strong>" + escapeHtml(toHumanLabel(entry.key))
+            + "</strong><span><a href=\"" + href + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + href + "</a></span></article>";
+        }).join("")
+        + "</div></section>"
+      : "";
+    const popup = window.open("about:blank", "_blank", "width=1200,height=900");
+    if (!popup) {
+      showError("Popup blocked. Allow popups to open full form view.");
+      return;
+    }
+    const html = "<!doctype html><html><head><meta charset=\"utf-8\"/>"
+      + "<title>Request #" + escapeHtml(row.id) + " - " + escapeHtml(toHumanLabel(row.form_type || "general_request")) + "</title>"
+      + "<style>"
+      + "body{font-family:Arial,sans-serif;margin:24px;color:#0b1c34;background:#f6f8fc;}h1{margin:0 0 4px;font-size:24px;}h2{margin:16px 0 10px;font-size:18px;}p.sub{margin:0 0 16px;color:#334155;}table{width:100%;border-collapse:collapse;background:#fff;}th,td{border:1px solid #d2d8e0;padding:8px;text-align:left;font-size:13px;vertical-align:top;}th{background:#eef4ff;width:160px;}section{margin-bottom:16px;} .field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;} .field{border:1px solid #d2d8e0;border-radius:8px;padding:8px;background:#fff;} .field strong{display:block;font-size:12px;text-transform:uppercase;color:#475569;margin-bottom:6px;} .field span{display:block;white-space:pre-wrap;word-break:break-word;}a{color:#0b5bd3;text-decoration:none;}a:hover{text-decoration:underline;}"
+      + "</style></head><body>"
+      + "<h1>Request #" + escapeHtml(row.id) + " - " + escapeHtml(toHumanLabel(row.form_type || "general_request")) + "</h1>"
+      + "<p class=\"sub\">Full form view</p>"
+      + "<section><table><tbody>"
+      + "<tr><th>Status</th><td>" + escapeHtml(row.status || "new") + "</td></tr>"
+      + "<tr><th>Email</th><td>" + escapeHtml(row.contact_email || "N/A") + "</td></tr>"
+      + "<tr><th>Phone</th><td>" + escapeHtml(row.contact_phone || "N/A") + "</td></tr>"
+      + "<tr><th>Source</th><td>" + escapeHtml(row.source_page || "N/A") + "</td></tr>"
+      + "<tr><th>Received</th><td>" + escapeHtml(formatDate(row.created_at)) + "</td></tr>"
+      + "</tbody></table></section>"
+      + "<section><h2>Submitted Fields</h2><div class=\"field-grid\">" + fieldsMarkup + "</div></section>"
+      + fileMarkup
+      + "</body></html>";
+    try {
+      popup.document.open();
+      popup.document.write(html);
+      popup.document.close();
+      popup.focus();
+    } catch (_error) {
+      showError("Could not render full form view window. Please retry.");
+    }
+  }
+
   function closeRequestModal() {
     if (!requestModal) {
       return;
@@ -1121,7 +1173,7 @@
       return;
     }
     if (action === "open") {
-      openRequestModal(id);
+      openRequestFullViewWindow(id);
       return;
     }
     if (action === "export") {
