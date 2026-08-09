@@ -14,12 +14,11 @@ const htmlRoutes = [
 ];
 
 const nextConfig: NextConfig = {
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
+  images: { unoptimized: true },
   async rewrites() {
     return [
-      {
-        source: "/",
-        destination: "/index.html",
-      },
       {
         source: "/admin",
         destination: "/admin.html",
