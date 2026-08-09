@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Labor Ready NY Inc | Construction Staffing",
+  title: "Puran Accounting & Tax Solution Lab NEXUS Platform | Launching Soon",
   description:
-    "Labor Ready NY Inc provides reliable construction staffing, dispatch, payroll support, and workforce solutions across NYC and the tri-state area.",
+    "Puran Accounting & Tax Solution Lab NEXUS Platform is under construction. We will be back soon with a polished premium dashboard experience.",
   openGraph: {
-    title: "Labor Ready NY Inc | Construction Staffing",
+    title: "Puran Accounting & Tax Solution Lab NEXUS Platform | Launching Soon",
     description:
-      "Labor Ready NY Inc provides reliable construction staffing, dispatch, payroll support, and workforce solutions across NYC and the tri-state area.",
+      "Puran Accounting & Tax Solution Lab NEXUS Platform is under construction. We will be back soon with a polished premium dashboard experience.",
     type: "website",
   },
 };
