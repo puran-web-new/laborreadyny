@@ -2206,6 +2206,7 @@ body::before {
 /* Premium under-construction dashboard landing page */
 .launch-page {
   min-height: 100vh;
+  padding-top: 0;
   background:
     radial-gradient(circle at 18% 18%, rgba(255, 190, 69, 0.18), transparent 34%),
     radial-gradient(circle at 84% 24%, rgba(80, 146, 255, 0.22), transparent 38%),
@@ -2215,7 +2216,7 @@ body::before {
 .launch-shell {
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 120px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 4rem 1.25rem;
