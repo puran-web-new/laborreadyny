@@ -1,107 +1,86 @@
-const capabilities = [
-  "Tax intake command center",
-  "Client document pipeline",
-  "Accounting workflow visibility",
-  "Secure launch-ready experience",
-];
-
-const metrics = [
-  { label: "Client workflows", value: "24/7" },
-  { label: "Launch readiness", value: "92%" },
-  { label: "Experience tier", value: "NEXUS" },
+const serviceCards = [
+  {
+    label: "Client notice",
+    title: "Our digital office is being upgraded",
+    text: "We are preparing a cleaner, faster online experience for accounting, tax, document intake, and client service updates.",
+  },
+  {
+    label: "What to expect",
+    title: "A polished client-first portal experience",
+    text: "The new NEXUS Platform will make it easier to understand services, request support, and stay informed while the full build is completed.",
+  },
+  {
+    label: "Availability",
+    title: "Business support remains active",
+    text: "While the website is under construction, clients can still contact Puran Accounting & Tax Solution Lab directly for assistance.",
+  },
 ];
 
 export default function HomePage() {
   return (
-    <main className="nexus-page" aria-labelledby="nexus-title">
-      <section className="hero-panel">
-        <div className="hero-copy">
-          <p className="eyebrow">Puran Accounting & Tax Solution Lab</p>
-          <h1 id="nexus-title">
-            NEXUS Platform for modern accounting, tax, and client operations.
-          </h1>
-          <p className="hero-text">
-            A premium digital command center is being built to streamline client intake,
-            tax workflows, document readiness, and business service visibility in one
-            polished dashboard experience.
-          </p>
-          <div className="hero-actions" aria-label="Primary actions">
-            <a href="mailto:info@puranaccounting.com" className="primary-action">Request early access</a>
-            <span className="launch-chip">Launching soon</span>
-          </div>
-        </div>
+    <main className="site" aria-labelledby="page-title">
+      <div className="ambient ambient-one" aria-hidden="true" />
+      <div className="ambient ambient-two" aria-hidden="true" />
 
-        <div className="orbital-stage" aria-label="NEXUS dashboard preview">
-          <div className="orbit orbit-one" />
-          <div className="orbit orbit-two" />
-          <div className="glass-dashboard">
-            <div className="dash-top">
+      <section className="hero-card">
+        <nav className="nav" aria-label="Site status">
+          <strong>Puran Accounting & Tax Solution Lab</strong>
+          <span>NEXUS Platform</span>
+        </nav>
+
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <p className="eyebrow">Website under construction</p>
+            <h1 id="page-title">A sleeker client experience is coming soon.</h1>
+            <p className="lead">
+              We are building the new Puran Accounting & Tax Solution Lab NEXUS Platform,
+              a modern landing page and dashboard experience for accounting, tax, and
+              client service information.
+            </p>
+            <div className="actions">
+              <a href="mailto:info@puranaccounting.com" className="button-primary">
+                Contact the office
+              </a>
+              <span className="button-ghost">Please check back soon</span>
+            </div>
+          </div>
+
+          <div className="preview" aria-label="Construction status preview">
+            <div className="preview-top">
               <span />
               <span />
               <span />
-              <strong>NEXUS OS</strong>
+              <strong>Build Status</strong>
             </div>
-            <div className="dash-main-card">
-              <span>Readiness index</span>
-              <strong>92%</strong>
-              <div className="meter"><i /></div>
+            <div className="status-card">
+              <span>Client platform rebuild</span>
+              <strong>In Progress</strong>
+              <div className="progress"><i /></div>
             </div>
-            <div className="mini-grid">
+            <div className="preview-list">
               <article>
-                <span>Tax queue</span>
-                <strong>Active</strong>
+                <span>Landing page</span>
+                <strong>Designing</strong>
               </article>
               <article>
-                <span>Documents</span>
-                <strong>Synced</strong>
+                <span>Client dashboard</span>
+                <strong>Preparing</strong>
               </article>
               <article>
-                <span>Client portal</span>
-                <strong>Preview</strong>
+                <span>Service content</span>
+                <strong>Updating</strong>
               </article>
-            </div>
-            <div className="wave-card">
-              <div className="wave-head">
-                <span>Workflow velocity</span>
-                <strong>Optimized</strong>
-              </div>
-              <div className="bars" aria-hidden="true">
-                <i style={{ height: "38%" }} />
-                <i style={{ height: "64%" }} />
-                <i style={{ height: "48%" }} />
-                <i style={{ height: "82%" }} />
-                <i style={{ height: "72%" }} />
-                <i style={{ height: "96%" }} />
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="content-grid" aria-label="Platform information">
-        <div className="section-heading">
-          <p className="eyebrow">What is coming</p>
-          <h2>A landing page and dashboard built for trust, clarity, and premium presentation.</h2>
-        </div>
-        <div className="feature-grid">
-          {capabilities.map((item, index) => (
-            <article className="feature-card" key={item}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{item}</h3>
-              <p>
-                Designed for a refined client experience with clean visibility, modern motion,
-                and professional accounting-focused messaging.
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="metric-strip" aria-label="NEXUS status metrics">
-        {metrics.map((metric) => (
-          <article key={metric.label}>
-            <strong>{metric.value}</strong>
-            <span>{metric.label}</span>
+      <section className="info-grid" aria-label="Construction details">
+        {serviceCards.map((card) => (
+          <article key={card.title}>
+            <p>{card.label}</p>
+            <h2>{card.title}</h2>
+            <span>{card.text}</span>
           </article>
         ))}
       </section>
@@ -109,223 +88,284 @@ export default function HomePage() {
       <style>{`
         * { box-sizing: border-box; }
         html, body { margin: 0; min-height: 100%; }
-        body { font-family: Inter, Arial, sans-serif; background: #030712; color: white; }
+        body {
+          font-family: Inter, Arial, sans-serif;
+          background: #07080d;
+          color: #ffffff;
+        }
         a { color: inherit; text-decoration: none; }
-        .nexus-page {
+        .site {
           min-height: 100vh;
+          position: relative;
           overflow: hidden;
           padding: clamp(1rem, 2vw, 1.5rem);
           background:
-            radial-gradient(circle at 18% 16%, rgba(253, 186, 116, 0.22), transparent 32%),
-            radial-gradient(circle at 84% 12%, rgba(59, 130, 246, 0.26), transparent 34%),
-            radial-gradient(circle at 50% 92%, rgba(16, 185, 129, 0.16), transparent 30%),
-            linear-gradient(135deg, #030712 0%, #07111f 48%, #0f2747 100%);
+            radial-gradient(circle at 18% 14%, rgba(226, 181, 104, 0.22), transparent 30%),
+            radial-gradient(circle at 82% 20%, rgba(90, 115, 255, 0.22), transparent 30%),
+            linear-gradient(135deg, #07080d 0%, #101524 48%, #161f32 100%);
         }
-        .nexus-page::before {
-          content: '';
+        .site::before {
+          content: "";
           position: fixed;
           inset: 0;
           pointer-events: none;
-          opacity: 0.38;
+          opacity: 0.26;
           background-image:
-            linear-gradient(rgba(255,255,255,0.075) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.075) 1px, transparent 1px);
-          background-size: 58px 58px;
-          mask-image: radial-gradient(circle at center, #000 0%, transparent 74%);
+            linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+          background-size: 52px 52px;
+          mask-image: radial-gradient(circle at center, #000, transparent 76%);
         }
-        .hero-panel {
-          min-height: calc(100vh - 2rem);
-          position: relative;
-          display: grid;
-          grid-template-columns: minmax(0, 0.9fr) minmax(390px, 1fr);
-          align-items: center;
-          gap: clamp(2rem, 6vw, 6rem);
-          width: min(1240px, 100%);
+        .ambient {
+          position: fixed;
+          width: 26rem;
+          height: 26rem;
+          border-radius: 999px;
+          filter: blur(18px);
+          opacity: .22;
+          animation: drift 12s ease-in-out infinite;
+        }
+        .ambient-one { left: -9rem; top: 8rem; background: #f5b95f; }
+        .ambient-two { right: -10rem; bottom: 5rem; background: #6d7cff; animation-delay: -5s; }
+        .hero-card,
+        .info-grid {
+          width: min(1180px, 100%);
           margin: 0 auto;
-          border: 1px solid rgba(255,255,255,0.12);
-          border-radius: 42px;
-          padding: clamp(2rem, 5vw, 5rem);
-          background: linear-gradient(140deg, rgba(255,255,255,0.12), rgba(255,255,255,0.035));
-          box-shadow: 0 36px 120px rgba(0,0,0,0.46), inset 0 1px 0 rgba(255,255,255,0.16);
-          backdrop-filter: blur(22px);
+          position: relative;
+          z-index: 1;
         }
-        .hero-panel::after {
-          content: '';
+        .hero-card {
+          min-height: calc(100vh - 2rem);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border: 1px solid rgba(255,255,255,.13);
+          border-radius: 38px;
+          padding: clamp(1.25rem, 4vw, 4rem);
+          background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.045));
+          box-shadow: 0 40px 120px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.16);
+          backdrop-filter: blur(24px);
+        }
+        .nav {
           position: absolute;
-          inset: 1.25rem;
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 32px;
-          pointer-events: none;
+          top: clamp(1rem, 2vw, 1.5rem);
+          left: clamp(1rem, 3vw, 2rem);
+          right: clamp(1rem, 3vw, 2rem);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          color: rgba(255,255,255,.86);
+          font-size: .9rem;
         }
-        .hero-copy, .orbital-stage, .content-grid, .metric-strip { position: relative; z-index: 1; }
+        .nav strong { letter-spacing: -.02em; }
+        .nav span {
+          border: 1px solid rgba(255,255,255,.14);
+          border-radius: 999px;
+          padding: .55rem .8rem;
+          color: #f7dba7;
+          background: rgba(255,255,255,.06);
+        }
+        .hero-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr);
+          align-items: center;
+          gap: clamp(2rem, 5vw, 5rem);
+          padding-top: 4rem;
+        }
         .eyebrow {
           display: inline-flex;
-          width: fit-content;
           margin: 0 0 1rem;
-          padding: 0.55rem 0.85rem;
-          border: 1px solid rgba(251, 191, 36, 0.34);
+          border: 1px solid rgba(245,185,95,.34);
           border-radius: 999px;
-          color: #fde68a;
-          background: rgba(251, 191, 36, 0.08);
-          font-size: 0.76rem;
+          padding: .55rem .85rem;
+          color: #f7dba7;
+          background: rgba(245,185,95,.09);
+          font-size: .76rem;
           font-weight: 800;
-          letter-spacing: 0.14em;
+          letter-spacing: .14em;
           text-transform: uppercase;
         }
         h1 {
           margin: 0;
-          font-size: clamp(3.15rem, 7vw, 7.35rem);
-          line-height: 0.88;
-          letter-spacing: -0.08em;
-          max-width: 820px;
+          max-width: 760px;
+          font-size: clamp(3.2rem, 7.2vw, 7.8rem);
+          line-height: .86;
+          letter-spacing: -.08em;
         }
-        .hero-text {
-          margin: 1.5rem 0 0;
+        .lead {
+          margin: 1.45rem 0 0;
           max-width: 620px;
-          color: rgba(226,232,240,0.86);
-          font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-          line-height: 1.75;
+          color: rgba(235,239,248,.82);
+          font-size: clamp(1.05rem, 1.8vw, 1.24rem);
+          line-height: 1.72;
         }
-        .hero-actions {
+        .actions {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
           gap: 1rem;
+          align-items: center;
           margin-top: 2rem;
         }
-        .primary-action, .launch-chip {
+        .button-primary,
+        .button-ghost {
           border-radius: 999px;
-          padding: 0.9rem 1.2rem;
+          padding: .92rem 1.18rem;
           font-weight: 800;
-          letter-spacing: -0.01em;
         }
-        .primary-action {
-          color: #101827;
-          background: linear-gradient(135deg, #fde68a, #fb923c);
-          box-shadow: 0 20px 44px rgba(251,146,60,0.26);
+        .button-primary {
+          color: #141414;
+          background: linear-gradient(135deg, #ffe2a7, #f5a85f);
+          box-shadow: 0 18px 42px rgba(245,168,95,.28);
         }
-        .launch-chip {
-          color: rgba(226,232,240,0.9);
-          border: 1px solid rgba(255,255,255,0.16);
-          background: rgba(255,255,255,0.07);
+        .button-ghost {
+          color: rgba(255,255,255,.86);
+          border: 1px solid rgba(255,255,255,.15);
+          background: rgba(255,255,255,.06);
         }
-        .orbital-stage {
-          min-height: 650px;
-          display: grid;
-          place-items: center;
-        }
-        .orbit {
-          position: absolute;
-          border: 1px solid rgba(255,255,255,0.14);
-          border-radius: 46% 54% 52% 48%;
-          animation: spin 18s linear infinite;
-        }
-        .orbit-one { width: min(520px, 92vw); height: min(520px, 92vw); }
-        .orbit-two { width: min(660px, 110vw); height: min(420px, 72vw); animation-direction: reverse; opacity: 0.72; }
-        .glass-dashboard {
-          width: min(520px, 100%);
-          transform: rotate(-4deg);
-          border: 1px solid rgba(255,255,255,0.16);
+        .preview {
+          transform: rotate(-3deg);
+          border: 1px solid rgba(255,255,255,.16);
           border-radius: 34px;
           padding: 1rem;
-          background: linear-gradient(145deg, rgba(15,23,42,0.88), rgba(15,23,42,0.54));
-          box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.16);
-          backdrop-filter: blur(24px);
+          background: linear-gradient(145deg, rgba(18,24,40,.9), rgba(18,24,40,.54));
+          box-shadow: 0 36px 90px rgba(0,0,0,.46), inset 0 1px 0 rgba(255,255,255,.14);
+          backdrop-filter: blur(22px);
           animation: float 7s ease-in-out infinite;
         }
-        .dash-top {
+        .preview-top {
           display: flex;
           align-items: center;
-          gap: 0.45rem;
-          padding: 0.7rem 0.8rem 1rem;
-          color: rgba(226,232,240,0.72);
-          font-size: 0.74rem;
-          letter-spacing: 0.12em;
+          gap: .45rem;
+          padding: .7rem .8rem 1rem;
+          color: rgba(235,239,248,.7);
+          font-size: .74rem;
+          letter-spacing: .12em;
           text-transform: uppercase;
         }
-        .dash-top span { width: 0.7rem; height: 0.7rem; border-radius: 999px; background: #fb7185; }
-        .dash-top span:nth-child(2) { background: #fbbf24; }
-        .dash-top span:nth-child(3) { background: #34d399; }
-        .dash-top strong { margin-left: auto; }
-        .dash-main-card, .mini-grid article, .wave-card, .feature-card, .metric-strip article {
-          border: 1px solid rgba(255,255,255,0.12);
-          background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
-          box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+        .preview-top span {
+          width: .7rem;
+          height: .7rem;
+          border-radius: 999px;
+          background: #fb7185;
         }
-        .dash-main-card {
+        .preview-top span:nth-child(2) { background: #f5b95f; }
+        .preview-top span:nth-child(3) { background: #34d399; }
+        .preview-top strong { margin-left: auto; }
+        .status-card,
+        .preview-list article,
+        .info-grid article {
+          border: 1px solid rgba(255,255,255,.12);
+          background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.045));
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+        }
+        .status-card {
           border-radius: 26px;
           padding: 1.25rem;
           background:
-            radial-gradient(circle at 80% 20%, rgba(251,191,36,0.34), transparent 40%),
-            linear-gradient(145deg, rgba(30,64,105,0.66), rgba(15,23,42,0.72));
+            radial-gradient(circle at 80% 20%, rgba(245,185,95,.32), transparent 40%),
+            linear-gradient(145deg, rgba(32,45,72,.82), rgba(18,24,40,.72));
         }
-        .dash-main-card span, .mini-grid span, .wave-head span, .feature-card span, .metric-strip span {
+        .status-card span,
+        .preview-list span,
+        .info-grid p {
           display: block;
-          color: rgba(203,213,225,0.72);
-          font-size: 0.74rem;
+          margin: 0;
+          color: rgba(211,218,232,.72);
+          font-size: .74rem;
           font-weight: 800;
-          letter-spacing: 0.1em;
+          letter-spacing: .1em;
           text-transform: uppercase;
         }
-        .dash-main-card strong {
+        .status-card strong {
           display: block;
-          margin-top: 0.8rem;
-          font-size: 3.4rem;
+          margin-top: .85rem;
+          font-size: clamp(2.5rem, 5vw, 4.3rem);
           line-height: 1;
+          letter-spacing: -.06em;
         }
-        .meter { height: 0.62rem; margin-top: 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; }
-        .meter i { display: block; width: 92%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #fef3c7, #fb923c); animation: glow 2.8s ease-in-out infinite; }
-        .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 0.8rem; }
-        .mini-grid article { min-height: 112px; border-radius: 22px; padding: 1rem; }
-        .mini-grid strong { display: block; margin-top: 1rem; font-size: 1.05rem; }
-        .wave-card { margin-top: 0.8rem; border-radius: 26px; padding: 1.15rem; }
-        .wave-head { display: flex; justify-content: space-between; gap: 1rem; }
-        .wave-head strong { color: #fde68a; font-size: 0.86rem; }
-        .bars { height: 140px; display: flex; align-items: end; gap: 0.75rem; margin-top: 1.5rem; }
-        .bars i { flex: 1; border-radius: 999px 999px 0 0; background: linear-gradient(180deg, #fde68a, #fb923c); animation: rise 2.8s ease-in-out infinite; }
-        .bars i:nth-child(2) { animation-delay: .15s; } .bars i:nth-child(3) { animation-delay: .3s; } .bars i:nth-child(4) { animation-delay: .45s; } .bars i:nth-child(5) { animation-delay: .6s; } .bars i:nth-child(6) { animation-delay: .75s; }
-        .content-grid, .metric-strip {
-          width: min(1240px, 100%);
-          margin: 1.25rem auto 0;
+        .progress {
+          height: .62rem;
+          margin-top: 1.35rem;
+          border-radius: 999px;
+          background: rgba(255,255,255,.12);
+          overflow: hidden;
         }
-        .content-grid {
+        .progress i {
+          display: block;
+          width: 78%;
+          height: 100%;
+          border-radius: inherit;
+          background: linear-gradient(90deg, #ffe2a7, #f5a85f);
+          animation: glow 2.8s ease-in-out infinite;
+        }
+        .preview-list {
           display: grid;
-          grid-template-columns: 0.8fr 1.2fr;
-          gap: 1.25rem;
+          grid-template-columns: repeat(3, 1fr);
+          gap: .8rem;
+          margin-top: .8rem;
         }
-        .section-heading, .feature-card {
-          border-radius: 30px;
-          padding: clamp(1.35rem, 3vw, 2rem);
-          border: 1px solid rgba(255,255,255,0.11);
-          background: rgba(255,255,255,0.055);
+        .preview-list article {
+          min-height: 112px;
+          border-radius: 22px;
+          padding: 1rem;
         }
-        .section-heading h2 { margin: 0; font-size: clamp(2rem, 4vw, 4rem); line-height: 0.98; letter-spacing: -0.05em; }
-        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .feature-card h3 { margin: 1.1rem 0 0.6rem; font-size: 1.25rem; }
-        .feature-card p { margin: 0; color: rgba(226,232,240,0.72); font-size: 0.96rem; line-height: 1.6; }
-        .metric-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-bottom: 1.25rem; }
-        .metric-strip article { border-radius: 26px; padding: 1.4rem; }
-        .metric-strip strong { display: block; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; letter-spacing: -0.06em; }
-        .metric-strip span { margin-top: 0.7rem; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes float { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-18px) rotate(-2deg); } }
-        @keyframes glow { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.35); } }
-        @keyframes rise { 0%,100% { transform: scaleY(.92); } 50% { transform: scaleY(1.05); } }
-        @media (max-width: 980px) {
-          .hero-panel, .content-grid { grid-template-columns: 1fr; }
-          .orbital-stage { min-height: 560px; }
+        .preview-list strong {
+          display: block;
+          margin-top: 1rem;
+          font-size: 1.02rem;
         }
-        @media (max-width: 680px) {
-          .nexus-page { padding: 0.75rem; }
-          .hero-panel { border-radius: 30px; padding: 2rem 1rem; }
-          .hero-panel::after { display: none; }
-          h1 { font-size: clamp(2.7rem, 16vw, 4.2rem); }
-          .orbital-stage { min-height: auto; padding: 3rem 0 1rem; }
-          .glass-dashboard { transform: none; }
-          .mini-grid, .feature-grid, .metric-strip { grid-template-columns: 1fr; }
+        .info-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1rem;
+          margin-top: 1.25rem;
+          padding-bottom: 1.25rem;
+        }
+        .info-grid article {
+          border-radius: 28px;
+          padding: clamp(1.2rem, 2.5vw, 1.8rem);
+        }
+        .info-grid h2 {
+          margin: 1rem 0 .8rem;
+          font-size: clamp(1.45rem, 2.5vw, 2.1rem);
+          line-height: 1.02;
+          letter-spacing: -.045em;
+        }
+        .info-grid span {
+          color: rgba(235,239,248,.76);
+          line-height: 1.65;
+        }
+        @keyframes drift {
+          0%,100% { transform: translate3d(0,0,0) scale(1); }
+          50% { transform: translate3d(28px,-20px,0) scale(1.08); }
+        }
+        @keyframes float {
+          0%,100% { transform: translateY(0) rotate(-3deg); }
+          50% { transform: translateY(-16px) rotate(-1deg); }
+        }
+        @keyframes glow {
+          0%,100% { filter: brightness(1); }
+          50% { filter: brightness(1.35); }
+        }
+        @media (max-width: 920px) {
+          .hero-grid,
+          .info-grid { grid-template-columns: 1fr; }
+          .preview { max-width: 620px; width: 100%; margin: 0 auto; }
+        }
+        @media (max-width: 640px) {
+          .site { padding: .75rem; }
+          .hero-card { border-radius: 28px; padding: 1rem; }
+          .nav { position: relative; inset: auto; flex-direction: column; align-items: flex-start; margin-bottom: 2rem; }
+          .hero-grid { padding-top: 0; }
+          h1 { font-size: clamp(2.8rem, 16vw, 4.4rem); }
+          .preview { transform: none; }
+          .preview-list { grid-template-columns: 1fr; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .orbit, .glass-dashboard, .meter i, .bars i { animation: none !important; }
+          .ambient,
+          .preview,
+          .progress i { animation: none !important; }
         }
       `}</style>
     </main>

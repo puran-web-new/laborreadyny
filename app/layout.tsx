@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Puran Accounting & Tax Solution Lab NEXUS Platform | Launching Soon",
+  title: "Puran Accounting & Tax Solution Lab | Website Under Construction",
   description:
-    "Puran Accounting & Tax Solution Lab NEXUS Platform is under construction. We will be back soon with a polished premium dashboard experience.",
+    "Puran Accounting & Tax Solution Lab is building the NEXUS Platform, a modern client experience for accounting, tax, and service information.",
   openGraph: {
-    title: "Puran Accounting & Tax Solution Lab NEXUS Platform | Launching Soon",
+    title: "Puran Accounting & Tax Solution Lab | Website Under Construction",
     description:
-      "Puran Accounting & Tax Solution Lab NEXUS Platform is under construction. We will be back soon with a polished premium dashboard experience.",
+      "Puran Accounting & Tax Solution Lab is building the NEXUS Platform, a modern client experience for accounting, tax, and service information.",
     type: "website",
   },
 };
